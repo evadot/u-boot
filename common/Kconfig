@@ -383,4 +383,13 @@ config DISPLAY_BOARDINFO
 	  when U-Boot starts up. The board function checkboard() is called
 	  to do this.
 
+config FREEBSD
+	bool "Enable FreeBSD boot"
+	select API
+	select SYS_DCACHE_OFF
+	default n
+	help
+	  This option adds boot configuration that can run the FreeBSD
+	  loader.
+
 source "common/spl/Kconfig"
