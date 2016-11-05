@@ -118,6 +118,10 @@ config SYS_L2CACHE_OFF
 	  If SoC does not support L2CACHE or one do not want to enable
 	  L2CACHE, choose this option.
 
+config SYS_DCACHE_OFF
+	bool "Do not use Data Cache"
+	default n
+
 config ENABLE_ARM_SOC_BOOT0_HOOK
 	bool "prepare BOOT0 header"
 	help
