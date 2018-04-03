@@ -191,6 +191,18 @@ config SYS_CONFIG_NAME
 	  The header file include/configs/<CONFIG_SYS_CONFIG_NAME>.h
 	  should be included from include/config.h.
 
+config SYS_HAVE_DCACHE_MAINTENANCE
+	bool
+	help
+	  This option should be enabled if the arch have data cache
+	  maintenance routines.
+
+config SYS_HAVE_ICACHE_MAINTENANCE
+	bool
+	help
+	  This option should be enabled if the arch have intruction cache
+	  maintenance routines.
+
 source "arch/arc/Kconfig"
 source "arch/arm/Kconfig"
 source "arch/m68k/Kconfig"
