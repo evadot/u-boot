@@ -19,6 +19,14 @@ __attribute__((weak))
 unsigned long do_go_exec(ulong (*entry)(int, char * const []), int argc,
 				 char * const argv[])
 {
+#if defined(CONFIG_SYS_HAVE_DCACHE_MAINTENANCE) && !defined(CONFIG_SYS_DCACHE_OFF)
+	if (dcache_status())
+		flush_dcache_all();
+#endif
+#if defined(CONFIG_SYS_HAVE_ICACHE_MAINTENANCE) && !defined(CONFIG_SYS_ICACHE_OFF)
+	if (icache_status())
+		invalidate_icache_all();
+#endif
 	return entry (argc, argv);
 }
 
