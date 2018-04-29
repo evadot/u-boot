@@ -290,6 +290,15 @@ static int API_dev_close(va_list ap)
 	if (!err)
 		di->state = DEV_STA_CLOSED;
 
+#if defined(CONFIG_SYS_HAVE_DCACHE_MAINTENANCE) && !defined(CONFIG_SYS_DCACHE_OFF)
+	if (dcache_status())
+		flush_dcache_all();
+#endif
+#if defined(CONFIG_SYS_HAVE_ICACHE_MAINTENANCE) && !defined(CONFIG_SYS_ICACHE_OFF)
+	if (icache_status())
+		invalidate_icache_all();
+#endif
+
 	return err;
 }
 
