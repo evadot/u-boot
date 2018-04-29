@@ -109,6 +109,15 @@ static unsigned long do_bootelf_exec(ulong (*entry)(int, char * const[]),
 {
 	unsigned long ret;
 
+#if defined(CONFIG_SYS_HAVE_DCACHE_MAINTENANCE) && !defined(CONFIG_SYS_DCACHE_OFF)
+	if (dcache_status())
+		flush_dcache_all();
+#endif
+#if defined(CONFIG_SYS_HAVE_ICACHE_MAINTENANCE) && !defined(CONFIG_SYS_ICACHE_OFF)
+	if (icache_status())
+		invalidate_icache_all();
+#endif
+
 	/*
 	 * pass address parameter as argv[0] (aka command name),
 	 * and all remaining args
